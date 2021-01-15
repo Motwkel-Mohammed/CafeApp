@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- page style -->
+        <item name="background_color">#E5F3F1</item>
+        <item name="text_color">#799391</item>
+        <item name="fab_color">#0192C9</item>
+        <item name="button_color">#0192C9</item>
+        <item name="card_color">#E5F4F2</item>
+        <!-- Transparent status bar -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- windows animation -->
+        <item name="android:windowAnimationStyle">@style/windowAnimation</item>
+    </style>
+
+    <!-- Dark application theme. -->
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#2B3038</item>
+        <item name="colorPrimaryDark">#2B3038</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!-- page style -->
+        <item name="background_color">#222329</item>
+        <item name="text_color">#E5F4F2</item>
+        <item name="fab_color">#FEBC19</item>
+        <item name="button_color">#FEBC19</item>
+        <item name="card_color">#2B3038</item>
+        <!-- Transparent status bar -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- windows animation -->
+        <item name="android:windowAnimationStyle">@style/windowAnimation</item>
+    </style>
+
+    <!-- Transition animation -->
+    <style name="windowAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>
