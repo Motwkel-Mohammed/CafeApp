@@ -32,9 +32,25 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                val intent = Intent(this, RegisterActivity::class.java)
+
+                val item = ArrayList<String>()
+                //  Get User number 0
+                mKaffeineViewModel.allUser.observe(this, Observer { user ->
+                    val current = user[0]
+
+                    item.add(current.userFirstName)
+                    item.add(current.userLastName)
+                    item.add(current.userEmail)
+                    item.add(current.userLocation)
+                    item.add(current.userPassword)
+
+                    intent.putStringArrayListExtra("current", item)
+                    intent.putExtra("update", 1)
+
+                    startActivity(intent)
+                    finish()
+                })
             }
         })
     }

@@ -52,7 +52,7 @@ class OrderKaffeineActivity : AppCompatActivity() {
         order_button.setOnClickListener {
             orderAction()
         }
-}
+    }
 
     private fun orderAction() {
         // Display User Data
@@ -159,10 +159,9 @@ class OrderKaffeineActivity : AppCompatActivity() {
     }
 
     private fun makeDouble(mCoffeePrice: Double?): String {
-        val sCoffeePrice = mCoffeePrice!!.toDouble()
-        when (sCoffeePrice) {
-            in 1..9 -> return String.format("%.2f", sCoffeePrice)
-            else -> return sCoffeePrice.toString()
+        return when (val sCoffeePrice = mCoffeePrice!!.toDouble()) {
+            in 1..9 -> String.format("%.2f", sCoffeePrice)
+            else -> sCoffeePrice.toString()
         }
     }
 

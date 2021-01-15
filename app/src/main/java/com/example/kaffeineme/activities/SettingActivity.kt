@@ -53,6 +53,8 @@ class SettingActivity : AppCompatActivity() {
 
             item.add(current.userFirstName)
             item.add(current.userLastName)
+            item.add(current.userEmail)
+            item.add(current.userLocation)
             item.add(current.userPassword)
 
             intent.putStringArrayListExtra("current", item)

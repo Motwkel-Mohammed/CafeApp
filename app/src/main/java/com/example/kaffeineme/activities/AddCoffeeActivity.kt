@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kaffeineme.R
@@ -26,7 +28,12 @@ class AddCoffeeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Apply the Theme
         setUpTheme()
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_add_coffee)
 
         mKaffeineViewModel = ViewModelProvider(this).get(KaffeineViewModel::class.java)
@@ -43,14 +50,14 @@ class AddCoffeeActivity : AppCompatActivity() {
         }
 
         if (item.isEmpty()) {
-            add_activity_title.text = "Insert"
+            add_activity_title.text = "Add Coffee"
             save_or_update.text = "Save"
 
             save_or_update.setOnClickListener {
                 insertData()
             }
         } else {
-            add_activity_title.text = "Update"
+            add_activity_title.text = "Edit Coffee"
             save_or_update.text = "Update"
 
             coffee_name.setText(item[1])
@@ -125,8 +132,7 @@ class AddCoffeeActivity : AppCompatActivity() {
     }
 
     private fun makeDouble(mCoffeePrice: String?): String {
-        val sCoffeePrice = mCoffeePrice!!.toDouble()
-        return when (sCoffeePrice) {
+        return when (val sCoffeePrice = mCoffeePrice!!.toDouble()) {
             in 1..9 -> String.format("%.2f", sCoffeePrice)
             else -> sCoffeePrice.toString()
         }

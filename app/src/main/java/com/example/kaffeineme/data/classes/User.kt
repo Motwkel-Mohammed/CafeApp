@@ -12,6 +12,10 @@ data class User(
     val userFirstName: String,
     @ColumnInfo(name = "last_name")
     val userLastName: String,
+    @ColumnInfo(name = "email")
+    val userEmail: String,
+    @ColumnInfo(name = "location")
+    val userLocation: String,
     @ColumnInfo(name = "password")
     val userPassword: String
 )
