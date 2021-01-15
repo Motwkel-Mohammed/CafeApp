@@ -75,22 +75,26 @@ class AddCoffeeActivity : AppCompatActivity() {
         val mCoffeeDescription = coffee_description.text.toString()
         val mCoffeePrice = coffee_price.text
 
-        if (inputCheck(mCoffeeName, mCoffeeDescription, mCoffeePrice)) {
-            // Insert Coffee Data
-            val kaffeine =
-                Kaffeine(
-                    0,
-                    mCoffeeName,
-                    mCoffeeDescription,
-                    mCoffeePrice.toString().toDouble(),
-                    randomImage()
-                )
-            mKaffeineViewModel.insertCoffee(kaffeine)
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        if (mCoffeePrice.toString().toDouble() > 25.99) {
+            Snackbar.make(coffee_price, "This is so expensive!", Snackbar.LENGTH_LONG).show()
         } else {
-            Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            if (inputCheck(mCoffeeName, mCoffeeDescription, mCoffeePrice)) {
+                // Insert Coffee Data
+                val kaffeine =
+                    Kaffeine(
+                        0,
+                        mCoffeeName,
+                        mCoffeeDescription,
+                        mCoffeePrice.toString().toDouble(),
+                        randomImage()
+                    )
+                mKaffeineViewModel.insertCoffee(kaffeine)
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 

@@ -11,10 +11,10 @@ class KaffeineViewModel(application: Application) : AndroidViewModel(application
 
     val allCoffee: LiveData<List<Kaffeine>>
     val allUser: LiveData<List<User>>
-    val repository: KaffeineRepository
+    private val repository: KaffeineRepository
 
     init {
-        var kaffeineDao = KaffeineDatabase.getDatabase(application).kaffeineDao()
+        val kaffeineDao = KaffeineDatabase.getDatabase(application).kaffeineDao()
         repository = KaffeineRepository(kaffeineDao)
         // Kaffeine table
         allCoffee = repository.allCoffee
@@ -48,7 +48,9 @@ class KaffeineViewModel(application: Application) : AndroidViewModel(application
         repository.updateUser(user)
     }
 
-    fun deleteUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
+    /*fun deleteUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteUser(user)
     }
+
+     */
 }

@@ -6,7 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.kaffeineme.data.interfaces.KaffeineDao
 
-@Database(entities = arrayOf(Kaffeine::class, User::class), version = 1, exportSchema = false)
+@Suppress("NAME_SHADOWING")
+@Database(entities = [Kaffeine::class, User::class], version = 1, exportSchema = false)
 abstract class KaffeineDatabase : RoomDatabase() {
 
     abstract fun kaffeineDao(): KaffeineDao

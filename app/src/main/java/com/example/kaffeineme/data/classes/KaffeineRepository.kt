@@ -48,9 +48,12 @@ class KaffeineRepository(private val kaffeineDao: KaffeineDao) {
         kaffeineDao.updateUser(user)
     }
 
+    /*
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun deleteUser(user: User) {
         kaffeineDao.deleteUser(user)
     }
+
+     */
 }

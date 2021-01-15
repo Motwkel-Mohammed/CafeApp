@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.kaffeineme.R
 import com.example.kaffeineme.data.classes.KaffeineViewModel
 
+@Suppress("NAME_SHADOWING")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var mKaffeineViewModel: KaffeineViewModel

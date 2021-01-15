@@ -12,25 +12,25 @@ import com.example.kaffeineme.R
 
 @Suppress("DEPRECATION")
 @SuppressLint("SetTextI18n")
-class HorizontalRecyclerAdapter(val listener: RowClickListener) :
+class HorizontalRecyclerAdapter(private val listener: RowClickListener) :
     RecyclerView.Adapter<HorizontalRecyclerAdapter.KaffeineViewHolder>() {
 
     private var kaffeineList = emptyList<Kaffeine>()
 
-    class KaffeineViewHolder(itemView: View, val listener: RowClickListener) :
+    class KaffeineViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val coffeeName = itemView.findViewById<TextView>(R.id.display_coffee_name)
-        val coffeeDescription = itemView.findViewById<TextView>(R.id.display_coffee_description)
-        val coffeePrice = itemView.findViewById<TextView>(R.id.display_coffee_price)
-        val deleteCoffee = itemView.findViewById<ImageView>(R.id.delete_coffee)
-        val coffeeImage = itemView.findViewById<ImageView>(R.id.coffee_image)
+        val coffeeName: TextView = itemView.findViewById(R.id.display_coffee_name)
+        val coffeeDescription: TextView = itemView.findViewById(R.id.display_coffee_description)
+        val coffeePrice: TextView = itemView.findViewById(R.id.display_coffee_price)
+        val deleteCoffee: ImageView = itemView.findViewById(R.id.delete_coffee)
+        val coffeeImage: ImageView = itemView.findViewById(R.id.coffee_image)
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KaffeineViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.display_horizontal_item, parent, false)
-        return KaffeineViewHolder(view, listener)
+        return KaffeineViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: KaffeineViewHolder, position: Int) {
@@ -68,10 +68,9 @@ class HorizontalRecyclerAdapter(val listener: RowClickListener) :
     }
 
     private fun makeDouble(mCoffeePrice: Double?): String {
-        val sCoffeePrice = mCoffeePrice!!.toDouble()
-        when (sCoffeePrice) {
-            in 1..9 -> return String.format("%.2f", sCoffeePrice)
-            else -> return sCoffeePrice.toString()
+        return when (val sCoffeePrice = mCoffeePrice!!.toDouble()) {
+            in 1..9 -> "%.2f".format(sCoffeePrice)
+            else -> sCoffeePrice.toString()
         }
     }
 
