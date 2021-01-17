@@ -2,3 +2,4 @@
 > - I used:
 >   -  Room Database
 >   - Coil image loader library 
+>   - Material Design Pattern
