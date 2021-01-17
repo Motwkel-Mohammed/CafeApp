@@ -79,4 +79,10 @@ class SettingActivity : AppCompatActivity() {
             setTheme(R.style.AppTheme)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 }

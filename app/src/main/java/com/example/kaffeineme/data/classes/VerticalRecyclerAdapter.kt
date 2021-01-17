@@ -1,29 +1,39 @@
 package com.example.kaffeineme.data.classes
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.kaffeineme.R
+import com.example.kaffeineme.activities.AddCoffeeActivity
+import com.example.kaffeineme.activities.MainActivity
+import com.google.android.material.snackbar.Snackbar
 
 @Suppress("DEPRECATION")
 @SuppressLint("SetTextI18n")
-class VerticalRecyclerAdapter(private val listener: RowClickListener) :
+class VerticalRecyclerAdapter(
+    private var items: MutableList<Kaffeine>,
+    private val listener: RowClickListener
+) :
     RecyclerView.Adapter<VerticalRecyclerAdapter.KaffeineViewHolder>() {
 
-    private var kaffeineList = emptyList<Kaffeine>()
+    private lateinit var mKaffeineViewModel: KaffeineViewModel
+    private var remove = 0
 
     class KaffeineViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         val coffeeName: TextView = itemView.findViewById(R.id.display_coffee_name)
         val coffeeDescription: TextView = itemView.findViewById(R.id.display_coffee_description)
         val coffeePrice: TextView = itemView.findViewById(R.id.display_coffee_price)
-        val deleteCoffee: ImageView = itemView.findViewById(R.id.delete_coffee)
         val coffeeImage: ImageView = itemView.findViewById(R.id.coffee_image)
 
     }
@@ -35,7 +45,7 @@ class VerticalRecyclerAdapter(private val listener: RowClickListener) :
     }
 
     override fun onBindViewHolder(holder: KaffeineViewHolder, position: Int) {
-        val current = kaffeineList[position]
+        val current = items[position]
 
         holder.coffeeName.text = current.coffeeName
         holder.coffeeDescription.text = current.coffeeDescription
@@ -50,22 +60,14 @@ class VerticalRecyclerAdapter(private val listener: RowClickListener) :
         holder.itemView.setOnClickListener {
             listener.onItemClickListener(current)
         }
-        //onItemLongClickListener
-        holder.itemView.setOnLongClickListener {
-            listener.onItemLongClickListener(current)
-        }
-        //onDeleteClickListener
-        holder.deleteCoffee.setOnClickListener {
-            listener.onDeleteClickListener(current)
-        }
     }
 
     override fun getItemCount(): Int {
-        return kaffeineList.size
+        return items.size
     }
 
     fun setData(kaffeine: List<Kaffeine>) {
-        this.kaffeineList = kaffeine
+        this.items = (kaffeine) as MutableList<Kaffeine>
         notifyDataSetChanged()
     }
 
@@ -86,10 +88,50 @@ class VerticalRecyclerAdapter(private val listener: RowClickListener) :
         }
     }
 
-    interface RowClickListener {
-        fun onDeleteClickListener(kaffeine: Kaffeine)
-        fun onItemClickListener(kaffeine: Kaffeine)
-        fun onItemLongClickListener(kaffeine: Kaffeine): Boolean
+    fun removeItem(viewHolder: RecyclerView.ViewHolder, context: MainActivity) {
+        val removedPosition = viewHolder.adapterPosition
+        val currentItem = items[removedPosition]
+
+        items.removeAt(removedPosition)
+        notifyItemRemoved(removedPosition)
+
+        Snackbar.make(
+            viewHolder.itemView,
+            "${currentItem.coffeeName} Deleted",
+            Snackbar.LENGTH_LONG
+        ).setAction("UNDO") {
+            remove = 1
+            items.add(removedPosition, currentItem)
+            notifyItemInserted(removedPosition)
+        }.show()
+
+        Handler().postDelayed({
+            if (remove == 0) {
+                mKaffeineViewModel = ViewModelProvider(context).get(KaffeineViewModel::class.java)
+                mKaffeineViewModel.deleteCoffee(currentItem)
+            }
+        }, 3000)
     }
 
+    fun updateItem(viewHolder: RecyclerView.ViewHolder, context: Context) {
+        val position = viewHolder.adapterPosition
+        val current = items[position]
+
+        val intent = Intent(context, AddCoffeeActivity::class.java)
+
+        val item = ArrayList<String>()
+        item.add(current.id.toString())
+        item.add(current.coffeeName)
+        item.add(current.coffeeDescription)
+        item.add(current.coffeePrice.toString())
+        item.add(current.coffeeImage.toString())
+
+        intent.putStringArrayListExtra("current", item)
+        intent.putExtra("activity", 1)
+        context.startActivity(intent)
+    }
+
+    interface RowClickListener {
+        fun onItemClickListener(kaffeine: Kaffeine)
+    }
 }

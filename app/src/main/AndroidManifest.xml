@@ -11,10 +11,8 @@
         android:roundIcon="@mipmap/ic_kaffeine_launcher"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.RegisterActivity"
-            android:parentActivityName=".activities.MainActivity"/>
-        <activity android:name=".activities.SplashActivity"
-            android:parentActivityName=".activities.SplashActivity">
+        <activity android:name=".activities.RegisterActivity"/>
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +28,7 @@
         <activity
             android:name=".activities.AddCoffeeActivity"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.MainActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".activities.MainActivity"/>
     </application>
 
 </manifest>

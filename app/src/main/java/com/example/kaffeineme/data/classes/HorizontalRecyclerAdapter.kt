@@ -12,17 +12,17 @@ import com.example.kaffeineme.R
 
 @Suppress("DEPRECATION")
 @SuppressLint("SetTextI18n")
-class HorizontalRecyclerAdapter(private val listener: RowClickListener) :
+class HorizontalRecyclerAdapter(
+    private var items: MutableList<Kaffeine>,
+    private val listener: RowClickListener
+) :
     RecyclerView.Adapter<HorizontalRecyclerAdapter.KaffeineViewHolder>() {
-
-    private var kaffeineList = emptyList<Kaffeine>()
 
     class KaffeineViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         val coffeeName: TextView = itemView.findViewById(R.id.display_coffee_name)
         val coffeeDescription: TextView = itemView.findViewById(R.id.display_coffee_description)
         val coffeePrice: TextView = itemView.findViewById(R.id.display_coffee_price)
-        val deleteCoffee: ImageView = itemView.findViewById(R.id.delete_coffee)
         val coffeeImage: ImageView = itemView.findViewById(R.id.coffee_image)
 
     }
@@ -34,7 +34,7 @@ class HorizontalRecyclerAdapter(private val listener: RowClickListener) :
     }
 
     override fun onBindViewHolder(holder: KaffeineViewHolder, position: Int) {
-        val current = kaffeineList[position]
+        val current = items[position]
 
         holder.coffeeName.text = current.coffeeName
         holder.coffeeDescription.text = current.coffeeDescription
@@ -48,22 +48,14 @@ class HorizontalRecyclerAdapter(private val listener: RowClickListener) :
         holder.itemView.setOnClickListener {
             listener.onItemClickListener(current)
         }
-        //onItemLongClickListener
-        holder.itemView.setOnLongClickListener {
-            listener.onItemLongClickListener(current)
-        }
-        //onDeleteClickListener
-        holder.deleteCoffee.setOnClickListener {
-            listener.onDeleteClickListener(current)
-        }
     }
 
     override fun getItemCount(): Int {
-        return kaffeineList.size
+        return items.size
     }
 
     fun setData(kaffeine: List<Kaffeine>) {
-        this.kaffeineList = kaffeine
+        this.items = (kaffeine) as MutableList<Kaffeine>
         notifyDataSetChanged()
     }
 
@@ -85,9 +77,7 @@ class HorizontalRecyclerAdapter(private val listener: RowClickListener) :
     }
 
     interface RowClickListener {
-        fun onDeleteClickListener(kaffeine: Kaffeine)
         fun onItemClickListener(kaffeine: Kaffeine)
-        fun onItemLongClickListener(kaffeine: Kaffeine): Boolean
     }
 
 }

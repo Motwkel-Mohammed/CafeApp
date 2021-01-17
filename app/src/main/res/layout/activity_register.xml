@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="?attr/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="300dp"
+        android:paddingBottom="250dp"
         tools:context=".activities.RegisterActivity">
 
         <RelativeLayout
@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Welcome back,"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/header_text_color"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign Up to continue"
-                    android:textColor="@android:color/white"
+                    android:textColor="?attr/header_text_color"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -94,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
+                    android:textColorHint="?attr/hint_text_color"
                     android:hint="First Name">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -101,6 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
+                        android:textColor="?attr/text_color"
                         android:layout_marginEnd="5dp"
                         android:maxLength="10" />
 
@@ -109,7 +111,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:textColorHint="?attr/hint_text_color"                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Last Name">
 
@@ -117,6 +119,7 @@
                         android:id="@+id/last_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textColor="?attr/text_color"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:maxLength="10" />
@@ -128,6 +131,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="?attr/hint_text_color"
                 android:layout_marginBottom="5dp"
                 android:hint="Email">
 
@@ -135,6 +139,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textColor="?attr/text_color"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:inputType="textEmailAddress"
@@ -145,13 +150,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textColorHint="?attr/hint_text_color"                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:hint="Location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/location"
                     android:layout_width="match_parent"
+                    android:textColor="?attr/text_color"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -165,6 +171,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                app:passwordToggleTint="?attr/text_color"
+                android:textColorHint="?attr/hint_text_color"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -173,6 +181,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:textColor="?attr/text_color"
                     android:inputType="numberPassword"
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -187,10 +196,10 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:width="200dp"
-                android:background="#A75B3B"
+                android:background="@drawable/button_shape"
                 android:text="Save"
                 android:textAllCaps="false"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/header_text_color"
                 android:textSize="16sp" />
 
         </LinearLayout>

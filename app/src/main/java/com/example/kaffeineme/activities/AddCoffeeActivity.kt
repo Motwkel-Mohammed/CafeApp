@@ -156,4 +156,9 @@ class AddCoffeeActivity : AppCompatActivity() {
         return (1..4).random()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 }

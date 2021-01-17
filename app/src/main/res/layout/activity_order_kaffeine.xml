@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF9FF">
+    android:background="?attr/background_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:id="@+id/coffee_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#414568"
+                android:textColor="?attr/main_text_color"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 tools:text="Espresso" />
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coffee_name"
                 android:layout_marginTop="5dp"
-                android:textColor="#A75B3B"
+                android:textColor="?attr/title_text_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="$7.90" />
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coffee_price"
                 android:layout_marginTop="20dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="?attr/sub_text_color"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 tools:text="Intrinsicly evisculate innovative e-markets whereas optimal e-tailers. Conveniently predominate vertical." />
@@ -67,9 +67,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/coffee_description"
-                app:cardBackgroundColor="#FFFFFF"
+                app:cardBackgroundColor="?attr/card_color"
                 app:cardCornerRadius="5dp"
-                app:cardMaxElevation="10dp"
+                app:cardElevation="04dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -83,10 +85,11 @@
                     <TextView
                         android:id="@+id/quantity_text"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:text="Quantity"
-                        android:textColor="@android:color/black"
+                        android:gravity="center_vertical"
+                        android:textColor="?attr/sub_text_color"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -96,23 +99,24 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:background="@android:color/white"
+                        android:background="?attr/card_color"
                         android:focusable="false"
                         android:text="-"
-                        android:textColor="@android:color/black"
+                        android:gravity="center"
+                        android:textColor="?attr/sub_text_color"
                         android:textSize="18sp" />
 
                     <!-- android:textColor="#414568" -->
                     <TextView
                         android:id="@+id/quantity_number"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="1"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/sub_text_color"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -122,10 +126,11 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
-                        android:background="@android:color/white"
+                        android:gravity="center"
+                        android:background="?attr/card_color"
                         android:focusable="false"
                         android:text="+"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/sub_text_color"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -139,10 +144,10 @@
                 android:layout_below="@id/card"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="#A75B3B"
+                android:background="@drawable/button_shape"
                 android:text="Add To Cart"
                 android:textAllCaps="false"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/header_text_color"
                 android:textSize="16sp" />
 
 

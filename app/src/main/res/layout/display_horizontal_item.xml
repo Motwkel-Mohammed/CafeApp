@@ -8,9 +8,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="150dp"
-        android:layout_height="195dp"
+        android:layout_height="170dp"
         android:layout_marginStart="3dp"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="?attr/card_color"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
@@ -22,19 +22,10 @@
             android:paddingBottom="3dp">
 
             <ImageView
-                android:id="@+id/delete_coffee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_delete_24dp"
-                android:tint="#A75B3B" />
-
-            <ImageView
                 android:id="@+id/coffee_image"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@id/delete_coffee"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
@@ -50,7 +41,7 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:paddingStart="5dp"
-                android:textColor="#414568"
+                android:textColor="?attr/main_text_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Coffee Name" />
@@ -64,7 +55,7 @@
                 android:maxLength="37"
                 android:maxLines="2"
                 android:paddingStart="5dp"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="?attr/sub_text_color"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 tools:text="Synergistically simplify world-class internal or organic." />
@@ -73,14 +64,14 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="55dp"
+        android:layout_width="57dp"
         android:layout_height="25dp"
         android:layout_alignStart="@id/card"
         android:layout_alignTop="@id/card"
         android:layout_marginStart="115dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="2dp"
-        app:cardBackgroundColor="#A75B3B"
+        app:cardBackgroundColor="?attr/button_color"
         app:cardCornerRadius="10dp">
 
         <TextView

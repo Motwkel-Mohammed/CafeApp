@@ -4,6 +4,11 @@
     <!-- used when you want to use same properties in different activity-->
     <declare-styleable name="al">
         <attr name="background_color" format="color" />
+        <attr name="main_text_color" format="color" />
+        <attr name="sub_text_color" format="color" />
+        <attr name="header_text_color" format="color" />
+        <attr name="title_text_color" format="color" />
+        <attr name="hint_text_color" format="color" />
         <attr name="text_color" format="color" />
         <attr name="fab_color" format="color" />
         <attr name="button_color" format="color" />

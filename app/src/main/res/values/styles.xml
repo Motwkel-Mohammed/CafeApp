@@ -7,11 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- page style -->
-        <item name="background_color">#E5F3F1</item>
-        <item name="text_color">#799391</item>
-        <item name="fab_color">#0192C9</item>
-        <item name="button_color">#0192C9</item>
-        <item name="card_color">#E5F4F2</item>
+        <item name="background_color">#FAF9FF</item>
+        <item name="main_text_color">#414568</item>
+        <item name="sub_text_color">#808080</item>
+        <item name="header_text_color">#DDFFFFFF</item>
+        <item name="title_text_color">#A75B3B</item>
+        <item name="hint_text_color">#808080</item>
+        <item name="text_color">#1C2833</item>
+        <item name="fab_color">#FBFCFC</item>
+        <item name="button_color">#A75B3B</item>
+        <item name="card_color">#FFFFFF</item>
         <!-- Transparent status bar -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
@@ -26,11 +31,16 @@
         <item name="colorPrimaryDark">#2B3038</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- page style -->
-        <item name="background_color">#222329</item>
-        <item name="text_color">#E5F4F2</item>
-        <item name="fab_color">#FEBC19</item>
-        <item name="button_color">#FEBC19</item>
-        <item name="card_color">#2B3038</item>
+        <item name="background_color">#2B3038</item>
+        <item name="main_text_color">#85C1E9</item>
+        <item name="sub_text_color">#EAECEE</item>
+        <item name="header_text_color">#FBFCFC</item>
+        <item name="title_text_color">#D7DBDD</item>
+        <item name="hint_text_color">#808080</item>
+        <item name="text_color">#E5E8E8</item>
+        <item name="fab_color">#FBFCFC</item>
+        <item name="button_color">#A75B3B</item>
+        <item name="card_color">#3C3C3C</item>
         <!-- Transparent status bar -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

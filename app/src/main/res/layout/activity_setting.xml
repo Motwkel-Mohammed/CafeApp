@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        app:cardElevation="24dp"
         android:layout_margin="20dp"
         app:cardBackgroundColor="?attr/card_color">
 
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:text="Setting"
-                android:textColor="?attr/text_color"
+                android:textColor="?attr/main_text_color"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
@@ -41,7 +42,7 @@
                 android:switchMinWidth="50dp"
                 android:switchPadding="30dp"
                 android:text="Dark mode"
-                android:textColor="?attr/text_color"
+                android:textColor="?attr/sub_text_color"
                 android:textSize="18sp" />
 
             <Button
@@ -52,7 +53,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:background="#A75B3B"
+                android:background="@drawable/button_shape"
                 android:padding="10dp"
                 android:text="Update User"
                 android:textAllCaps="false"
