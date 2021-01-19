@@ -21,7 +21,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
-            android:contentDescription="UserImage"
+            android:contentDescription="@string/order_coffee_image"
             android:scaleType="centerCrop"
             android:src="@drawable/man" />
 
@@ -31,9 +31,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:layout_toEndOf="@id/icon_image"
-            android:text="Hello,"
+            android:text="@string/hello_main"
+            android:textColor="?attr/header_text_color"
             android:textStyle="bold"
-            android:textColor="?attr/header_text_color" />
+            tools:ignore="RelativeOverlap" />
 
         <TextView
             android:id="@+id/user_name"
@@ -43,6 +44,7 @@
             android:layout_marginTop="50dp"
             android:layout_toEndOf="@id/icon_image"
             android:textColor="?attr/header_text_color"
+            tools:ignore="RelativeOverlap"
             tools:text="Motwkel Idris" />
 
         <ImageView
@@ -51,10 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="36dp"
-            android:tint="?attr/fab_color"
             android:layout_marginEnd="20dp"
-            android:contentDescription="Setting"
-            android:src="@drawable/ic_settings_24dp" />
+            android:contentDescription="@string/order_coffee_image"
+            android:src="@drawable/ic_settings_24dp"
+            android:tint="?attr/fab_color" />
 
     </RelativeLayout>
 
@@ -86,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:text="All Coffee"
+                android:text="@string/all_coffee_main"
                 android:textColor="?attr/title_text_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />

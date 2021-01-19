@@ -50,15 +50,15 @@ class AddCoffeeActivity : AppCompatActivity() {
         }
 
         if (item.isEmpty()) {
-            add_activity_title.text = "Add Coffee"
-            save_or_update.text = "Save"
+            add_activity_title.text = getString(R.string.add_coffee_add_screen)
+            save_or_update.text = getString(R.string.add_coffee_button)
 
             save_or_update.setOnClickListener {
                 insertData()
             }
         } else {
-            add_activity_title.text = "Edit Coffee"
-            save_or_update.text = "Update"
+            add_activity_title.text = getString(R.string.edit_coffee_text)
+            save_or_update.text = getString(R.string.update_text)
 
             coffee_name.setText(item[1])
             coffee_description.setText(item[2])

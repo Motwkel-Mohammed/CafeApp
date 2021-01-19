@@ -30,6 +30,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="7dp"
+                android:contentDescription="@string/order_coffee_image"
                 android:src="@drawable/ic_cup" />
 
             <LinearLayout
@@ -38,13 +39,13 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@id/image"
+                android:layout_toEndOf="@id/image"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome back,"
+                    android:text="@string/welcome_back_add_screen"
                     android:textColor="?attr/header_text_color"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -53,7 +54,7 @@
                     android:id="@+id/register_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign Up to continue"
+                    android:text="@string/sign_up_to_continue_register"
                     android:textColor="?attr/header_text_color"
                     android:textSize="24sp" />
 
@@ -66,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:contentDescription="coffee image"
+            android:contentDescription="@string/order_coffee_image"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_up_background" />
 
@@ -86,43 +87,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="3dp"
                     android:layout_weight="1"
-                    android:textColorHint="?attr/hint_text_color"
-                    android:hint="First Name">
+                    android:hint="@string/first_name_register"
+                    android:textColorHint="?attr/hint_text_color">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/first_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:textColor="?attr/text_color"
-                        android:layout_marginEnd="5dp"
-                        android:maxLength="10" />
+                        android:maxLength="10"
+                        android:textColor="?attr/text_color" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
-                    android:textColorHint="?attr/hint_text_color"                    android:layout_height="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Last Name">
+                    android:hint="@string/last_name_register"
+                    android:textColorHint="?attr/hint_text_color">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/last_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="?attr/text_color"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:maxLength="10" />
+                        android:maxLength="10"
+                        android:textColor="?attr/text_color" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -131,38 +130,17 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="?attr/hint_text_color"
                 android:layout_marginBottom="5dp"
-                android:hint="Email">
+                android:hint="@string/email_register"
+                android:textColorHint="?attr/hint_text_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="?attr/text_color"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
                     android:inputType="textEmailAddress"
-                    android:maxLength="20" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:textColorHint="?attr/hint_text_color"                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:hint="Location">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/location"
-                    android:layout_width="match_parent"
-                    android:textColor="?attr/text_color"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="35" />
+                    android:maxLength="20"
+                    android:textColor="?attr/text_color" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,21 +148,51 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                app:passwordToggleTint="?attr/text_color"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/location_register"
+                android:textColorHint="?attr/hint_text_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="35"
+                    android:textColor="?attr/text_color" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_register"
                 android:textColorHint="?attr/hint_text_color"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="?attr/text_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="?attr/text_color"
                     android:inputType="numberPassword"
-                    android:maxLength="10" />
+                    android:maxLength="10"
+                    android:textColor="?attr/text_color" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/save_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:buttonTint="?attr/text_color"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/save_password_text"
+                android:textColor="?attr/text_color"
+                android:textSize="16sp"
+                tools:targetApi="lollipop" />
+
 
             <Button
                 android:id="@+id/save_or_update"
@@ -197,7 +205,7 @@
                 android:layout_marginBottom="20dp"
                 android:width="200dp"
                 android:background="@drawable/button_shape"
-                android:text="Save"
+                android:text="@string/add_coffee_button"
                 android:textAllCaps="false"
                 android:textColor="?attr/header_text_color"
                 android:textSize="16sp" />

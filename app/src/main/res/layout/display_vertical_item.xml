@@ -28,6 +28,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/order_coffee_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/cappuccino" />
 
@@ -66,6 +67,7 @@
                 android:textColor="?attr/main_text_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                tools:ignore="RelativeOverlap"
                 tools:text="$7.90" />
 
         </RelativeLayout>

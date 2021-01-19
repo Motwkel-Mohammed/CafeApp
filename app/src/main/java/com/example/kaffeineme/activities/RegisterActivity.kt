@@ -1,12 +1,14 @@
 package com.example.kaffeineme.activities
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -16,8 +18,10 @@ import com.example.kaffeineme.data.classes.User
 import com.example.kaffeineme.data.shared_preference.SaveData
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_register.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var saveData: SaveData
@@ -30,6 +34,11 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Apply the Theme
         setUpTheme()
+        // Apply the Theme
+        if (saveData.loadArabicLanguageState() == 1) {
+            setUpLanguage("ar")
+        } else setUpLanguage("en")
+
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -43,6 +52,19 @@ class RegisterActivity : AppCompatActivity() {
         setUpIfInsertOrUpdate()
     }
 
+    private fun setUpLanguage(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        this.resources.updateConfiguration(config, this.resources.displayMetrics)
+        if (language == "en") {
+            saveData.setArabicLanguageState(0)
+        } else if (language == "ar") {
+            saveData.setArabicLanguageState(1)
+        }
+    }
+
     private fun setUpIfInsertOrUpdate() {
         val intent = intent
         mActivity = intent.getIntExtra("activity", mActivity)
@@ -51,8 +73,8 @@ class RegisterActivity : AppCompatActivity() {
         if (mActivity == 1 && mUpdate == 0) {
             item = intent.getStringArrayListExtra("current")
             // This is for Update User
-            register_title.text = "Update to Continue"
-            save_or_update.text = "Update"
+            register_title.text = getString(R.string.update_to_continue_text)
+            save_or_update.text = getString(R.string.update_text)
 
             first_name.setText(item[0])
             last_name.setText(item[1])
@@ -60,29 +82,47 @@ class RegisterActivity : AppCompatActivity() {
             location.setText(item[3])
             password.setText(item[4])
 
+            save_password.isChecked = saveData.loadSavePasswordState()
+
             save_or_update.setOnClickListener {
+                if (save_password.isChecked) {
+                    saveData.setSavePasswordState(true)
+                } else {
+                    saveData.setSavePasswordState(false)
+                }
+
                 updateData()
             }
         }
 
         if (mUpdate == 1 && mActivity == 0) {
+            // Apply the Save Password logic
+            savePassword()
             item = intent.getStringArrayListExtra("current")
             // This is for User Sign-In
-            register_title.text = "Sign In to Continue"
-            save_or_update.text = "Sign In"
+            register_title.text = getString(R.string.sign_in_to_continue_text)
+            save_or_update.text = getString(R.string.sign_in_text)
 
+            email.setText(item[2])
             first_name.visibility = View.GONE
             last_name.visibility = View.GONE
             location.visibility = View.GONE
 
             save_or_update.setOnClickListener {
+                if (save_password.isChecked) {
+                    saveData.setSavePasswordState(true)
+                } else {
+                    saveData.setSavePasswordState(false)
+                }
+
                 signInUser()
             }
         }
 
         if (mActivity == 0 && mUpdate == 0) {
-            register_title.text = "Sign Up to Continue"
-            save_or_update.text = "Sign Up"
+            register_title.text = getString(R.string.sign_up_to_continue_register)
+            save_or_update.text = getString(R.string.sign_up_text)
+            save_password.visibility = View.GONE
 
             save_or_update.setOnClickListener {
                 insertData()
@@ -165,6 +205,15 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun savePassword() {
+        // share preference
+        saveData = SaveData(this)
+        if (saveData.loadSavePasswordState()) { // if true..
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

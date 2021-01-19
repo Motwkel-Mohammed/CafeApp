@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:cardElevation="24dp"
         android:layout_margin="20dp"
-        app:cardBackgroundColor="?attr/card_color">
+        app:cardBackgroundColor="?attr/card_color"
+        app:cardElevation="24dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,35 +27,104 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Setting"
+                android:text="@string/setting_text"
                 android:textColor="?attr/main_text_color"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
-            <Switch
-                android:id="@+id/switch_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/dark_mode"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/setting_text"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:switchMinWidth="50dp"
-                android:switchPadding="30dp"
-                android:text="Dark mode"
-                android:textColor="?attr/sub_text_color"
-                android:textSize="18sp" />
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/order_coffee_image"
+                    android:src="@drawable/ic_theme"
+                    android:tint="?attr/text_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dark_mode_setting"
+                        android:textColor="?attr/main_text_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dark_mode_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dark_text"
+                        android:textColor="?attr/sub_text_color"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dark_mode"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/order_coffee_image"
+                    android:src="@drawable/ic_language"
+                    android:tint="?attr/text_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/language_text"
+                        android:textColor="?attr/main_text_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/language_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/arabic_text"
+                        android:textColor="?attr/sub_text_color"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/update_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/switch_button"
+                android:layout_below="@id/language"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/button_shape"
                 android:padding="10dp"
-                android:text="Update User"
+                android:text="@string/update_user_button_setting"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />

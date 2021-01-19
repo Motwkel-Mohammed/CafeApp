@@ -8,8 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="3dp"
+        android:layout_height="175dp"
         app:cardBackgroundColor="?attr/card_color"
         app:cardCornerRadius="10dp">
 
@@ -28,6 +27,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/order_coffee_image"
                 android:scaleType="centerInside"
                 android:src="@drawable/cappuccino_1" />
 
@@ -41,6 +41,7 @@
                 android:maxLength="11"
                 android:maxLines="1"
                 android:paddingStart="5dp"
+                android:paddingEnd="2dp"
                 android:textColor="?attr/main_text_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -55,6 +56,7 @@
                 android:maxLength="37"
                 android:maxLines="2"
                 android:paddingStart="5dp"
+                android:paddingEnd="2dp"
                 android:textColor="?attr/sub_text_color"
                 android:textSize="12sp"
                 android:textStyle="italic"
@@ -69,16 +71,17 @@
         android:layout_alignStart="@id/card"
         android:layout_alignTop="@id/card"
         android:layout_marginStart="115dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="3dp"
         app:cardBackgroundColor="?attr/button_color"
         app:cardCornerRadius="10dp">
 
         <TextView
             android:id="@+id/display_coffee_price"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"

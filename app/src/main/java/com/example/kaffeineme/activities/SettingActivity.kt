@@ -1,7 +1,9 @@
 package com.example.kaffeineme.activities
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +11,10 @@ import com.example.kaffeineme.R
 import com.example.kaffeineme.data.classes.KaffeineViewModel
 import com.example.kaffeineme.data.shared_preference.SaveData
 import kotlinx.android.synthetic.main.activity_setting.*
+import java.util.*
+import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 class SettingActivity : AppCompatActivity() {
 
     private lateinit var saveData: SaveData
@@ -24,23 +29,74 @@ class SettingActivity : AppCompatActivity() {
         mKaffeineViewModel = ViewModelProvider(this).get(KaffeineViewModel::class.java)
 
         if (saveData.loadDarkState()) { // if true..
-            switch_button.isChecked = true
+            dark_mode_text.text = getString(R.string.dark_text)
+        } else {
+            dark_mode_text.text = getString(R.string.light_text)
+        }
+        if (saveData.loadArabicLanguageState() == 1) {
+            language_text.text = getString(R.string.arabic_text)
+        } else {
+            language_text.text = getString(R.string.english_text)
         }
 
-        switch_button.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                saveData.setDarkModeState(true)
-                restartApplication()
-            } else {
-                saveData.setDarkModeState(false)
-                restartApplication()
-            }
+        language.setOnClickListener {
+            languageLogic()
+        }
+
+        dark_mode.setOnClickListener {
+            darkModeLogic()
         }
 
         update_user.setOnClickListener {
             updateAction()
         }
 
+    }
+
+    private fun darkModeLogic() {
+        val item = arrayOf(getString(R.string.dark_text), getString(R.string.light_text))
+        val builder = AlertDialog.Builder(this)
+        builder.setSingleChoiceItems(item, -1) { dialogInterface, i ->
+            if (i == 0) {
+                // This is Dark theme
+                saveData.setDarkModeState(true)
+                restartApplication()
+            } else if (i == 1) {
+                // This is Light theme
+                saveData.setDarkModeState(false)
+                restartApplication()
+            }
+            dark_mode_text.text = item[i]
+
+            dialogInterface.dismiss()
+        }
+        builder.setNeutralButton(getString(R.string.cancel_text)) { dialog, _ ->
+            dialog.cancel()
+        }
+        builder.setTitle(getString(R.string.choose_theme_text))
+        builder.create().show()
+    }
+
+    private fun languageLogic() {
+        val item = arrayOf("English", "العربية")
+        val builder = AlertDialog.Builder(this)
+        builder.setSingleChoiceItems(item, -1) { dialogInterface, i ->
+            if (i == 0) {
+                // This English
+                setUpLanguage("en")
+            } else if (i == 1) {
+                // This Arabic
+                setUpLanguage("ar")
+            }
+            language_text.text = item[i]
+
+            dialogInterface.dismiss()
+        }
+        builder.setNeutralButton(getString(R.string.cancel_text)) { dialog, _ ->
+            dialog.cancel()
+        }
+        builder.setTitle(getString(R.string.choose_language_text))
+        builder.create().show()
     }
 
     private fun updateAction() {
@@ -78,6 +134,20 @@ class SettingActivity : AppCompatActivity() {
         } else {
             setTheme(R.style.AppTheme)
         }
+    }
+
+    private fun setUpLanguage(language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        this.resources.updateConfiguration(config, this.resources.displayMetrics)
+        if (language == "en") {
+            saveData.setArabicLanguageState(0)
+        } else if (language == "ar") {
+            saveData.setArabicLanguageState(1)
+        }
+        restartApplication()
     }
 
     override fun onBackPressed() {

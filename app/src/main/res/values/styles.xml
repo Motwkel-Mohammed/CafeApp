@@ -14,7 +14,7 @@
         <item name="title_text_color">#A75B3B</item>
         <item name="hint_text_color">#808080</item>
         <item name="text_color">#1C2833</item>
-        <item name="fab_color">#FBFCFC</item>
+        <item name="fab_color">#CCFBFCFC</item>
         <item name="button_color">#A75B3B</item>
         <item name="card_color">#FFFFFF</item>
         <!-- Transparent status bar -->
@@ -38,7 +38,7 @@
         <item name="title_text_color">#D7DBDD</item>
         <item name="hint_text_color">#808080</item>
         <item name="text_color">#E5E8E8</item>
-        <item name="fab_color">#FBFCFC</item>
+        <item name="fab_color">#CCFBFCFC</item>
         <item name="button_color">#A75B3B</item>
         <item name="card_color">#3C3C3C</item>
         <!-- Transparent status bar -->
