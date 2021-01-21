@@ -3,7 +3,6 @@ package com.example.kaffeineme.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.view.Window
 import android.view.WindowManager
@@ -71,57 +70,76 @@ class AddCoffeeActivity : AppCompatActivity() {
     }
 
     private fun insertData() {
-        val mCoffeeName = coffee_name.text.toString()
-        val mCoffeeDescription = coffee_description.text.toString()
-        val mCoffeePrice = coffee_price.text
+        val mCoffeeName = coffee_name.text.toString().trim()
+        val mCoffeeDescription = coffee_description.text.toString().trim()
+        val mCoffeePrice = coffee_price.text.toString().trim()
 
-        if (mCoffeePrice.toString().toDouble() > 25.99) {
-            Snackbar.make(coffee_price, "This is so expensive!", Snackbar.LENGTH_LONG).show()
-        } else {
-            if (inputCheck(mCoffeeName, mCoffeeDescription, mCoffeePrice)) {
+        if (inputCheck(mCoffeeName, mCoffeeDescription, mCoffeePrice)) {
+            if (mCoffeePrice.toDouble() > 25.99) {
+                Snackbar.make(
+                    coffee_price,
+                    getString(R.string.expensive_text),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
                 // Insert Coffee Data
                 val kaffeine =
                     Kaffeine(
                         0,
                         mCoffeeName,
                         mCoffeeDescription,
-                        mCoffeePrice.toString().toDouble(),
+                        mCoffeePrice.toDouble(),
                         randomImage()
                     )
                 mKaffeineViewModel.insertCoffee(kaffeine)
 
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-            } else {
-                Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
             }
+        } else {
+            Snackbar.make(
+                save_or_update,
+                getString(R.string.fill_out_all_field_text),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun updateData() {
-        val mCoffeeName = coffee_name.text.toString()
-        val mCoffeeDescription = coffee_description.text.toString()
-        val mCoffeePrice = coffee_price.text
+        val mCoffeeName = coffee_name.text.toString().trim()
+        val mCoffeeDescription = coffee_description.text.toString().trim()
+        val mCoffeePrice = coffee_price.text.toString().trim()
         val mCoffeeImage = item[4].toInt()
         val id = item[0].toLong()
 
         if (inputCheck(mCoffeeName, mCoffeeDescription, mCoffeePrice)) {
+            if (mCoffeePrice.toDouble() > 25.99) {
+                Snackbar.make(
+                    coffee_price,
+                    getString(R.string.expensive_text),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            } else {
+                // Update Coffee Data
+                val kaffeine =
+                    Kaffeine(
+                        id,
+                        mCoffeeName,
+                        mCoffeeDescription,
+                        mCoffeePrice.toDouble(),
+                        mCoffeeImage
+                    )
+                mKaffeineViewModel.updateCoffee(kaffeine)
 
-            // Update Coffee Data
-            val kaffeine =
-                Kaffeine(
-                    id,
-                    mCoffeeName,
-                    mCoffeeDescription,
-                    mCoffeePrice.toString().toDouble(),
-                    mCoffeeImage
-                )
-            mKaffeineViewModel.updateCoffee(kaffeine)
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         } else {
-            Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                save_or_update,
+                getString(R.string.fill_out_all_field_text),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
@@ -145,7 +163,7 @@ class AddCoffeeActivity : AppCompatActivity() {
     private fun inputCheck(
         mCoffeeName: String,
         mCoffeeDescription: String,
-        mCoffeePrice: Editable?
+        mCoffeePrice: String
     ): Boolean {
         return !(TextUtils.isEmpty(mCoffeeName)) &&
                 !(TextUtils.isEmpty(mCoffeeDescription)) &&

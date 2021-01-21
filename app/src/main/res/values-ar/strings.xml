@@ -7,6 +7,7 @@
     <string name="order_coffee_image">صورة القهوة</string>
     <string name="order_button">أضف إلى السلة</string>
     <string name="welcome_back_add_screen">مرحبا بعودتك،</string>
+    <string name="welcome_text">أهلا بك،</string>
     <string name="add_coffee_add_screen">أضف القهوة</string>
     <string name="coffee_name">اسم القهوة</string>
     <string name="coffee_description">وصف القهوة</string>
@@ -39,4 +40,10 @@
     <string name="arabic_text">العربية</string>
     <string name="language_text">اللغة</string>
     <string name="save_password_text">حفظ كلمة المرور</string>
+    <string name="undo_text">تراجع</string>
+    <string name="ok_text">حسنا</string>
+    <string name="error_text">خطأ</string>
+    <string name="invalid_user_text">معلومات تسجيل الدخول غير صالحة</string>
+    <string name="fill_out_all_field_text">املأ كل الحقول !!</string>
+    <string name="expensive_text">هذا مكلف جدا !!</string>
 </resources>

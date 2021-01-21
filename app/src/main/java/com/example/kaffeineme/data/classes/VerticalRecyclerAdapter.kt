@@ -97,9 +97,9 @@ class VerticalRecyclerAdapter(
 
         Snackbar.make(
             viewHolder.itemView,
-            "${currentItem.coffeeName} Deleted",
+            "${currentItem.coffeeName} ${context.getString(R.string.delete_icon)}?",
             Snackbar.LENGTH_LONG
-        ).setAction("UNDO") {
+        ).setAction(context.getString(R.string.undo_text)) {
             remove = 1
             items.add(removedPosition, currentItem)
             notifyItemInserted(removedPosition)

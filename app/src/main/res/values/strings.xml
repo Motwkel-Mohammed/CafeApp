@@ -7,6 +7,7 @@
     <string name="order_coffee_image">coffee image</string>
     <string name="order_button">Add To Cart</string>
     <string name="welcome_back_add_screen">Welcome back,</string>
+    <string name="welcome_text">Welcome,</string>
     <string name="add_coffee_add_screen">Add Coffee</string>
     <string name="coffee_name">Coffee Name</string>
     <string name="coffee_description">Coffee Description</string>
@@ -39,4 +40,10 @@
     <string name="arabic_text">العربية</string>
     <string name="language_text">Language</string>
     <string name="save_password_text">Save Password</string>
+    <string name="undo_text">UNDO</string>
+    <string name="ok_text">Ok</string>
+    <string name="error_text">Error</string>
+    <string name="invalid_user_text">Invalid login information</string>
+    <string name="fill_out_all_field_text">Fill out all field!!</string>
+    <string name="expensive_text">This is so expensive!</string>
 </resources>

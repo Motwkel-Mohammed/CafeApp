@@ -3,12 +3,10 @@ package com.example.kaffeineme.activities
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -70,10 +68,12 @@ class RegisterActivity : AppCompatActivity() {
         mActivity = intent.getIntExtra("activity", mActivity)
         mUpdate = intent.getIntExtra("update", mUpdate)
 
+        // Update logic
         if (mActivity == 1 && mUpdate == 0) {
             item = intent.getStringArrayListExtra("current")
             // This is for Update User
             register_title.text = getString(R.string.update_to_continue_text)
+            welcome_back.text = getString(R.string.welcome_back_add_screen)
             save_or_update.text = getString(R.string.update_text)
 
             first_name.setText(item[0])
@@ -94,13 +94,14 @@ class RegisterActivity : AppCompatActivity() {
                 updateData()
             }
         }
-
+        // Sign in logic
         if (mUpdate == 1 && mActivity == 0) {
             // Apply the Save Password logic
             savePassword()
             item = intent.getStringArrayListExtra("current")
             // This is for User Sign-In
             register_title.text = getString(R.string.sign_in_to_continue_text)
+            welcome_back.text = getString(R.string.welcome_back_add_screen)
             save_or_update.text = getString(R.string.sign_in_text)
 
             email.setText(item[2])
@@ -119,8 +120,10 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        // Sign up logic
         if (mActivity == 0 && mUpdate == 0) {
             register_title.text = getString(R.string.sign_up_to_continue_register)
+            welcome_back.text = getString(R.string.welcome_text)
             save_or_update.text = getString(R.string.sign_up_text)
             save_password.visibility = View.GONE
 
@@ -133,31 +136,35 @@ class RegisterActivity : AppCompatActivity() {
     private fun signInUser() {
         val mEmail = item[2]
         val mPassword = item[4]
-        val sEmail = email.text.toString()
-        val sPassword = password.text
+        val sEmail = email.text.toString().trim()
+        val sPassword = password.text.toString().trim()
 
         if (secureInputCheck(sEmail, sPassword)) {
-            if (sEmail == mEmail && sPassword.toString() == mPassword) {
+            if (sEmail == mEmail && sPassword == mPassword) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
                 val builder = AlertDialog.Builder(this)
-                builder.setNeutralButton("Ok") { _, _ -> }
-                builder.setTitle("Error")
-                builder.setMessage("Invalid User")
+                builder.setNeutralButton(getString(R.string.ok_text)) { _, _ -> }
+                builder.setTitle(getString(R.string.error_text))
+                builder.setMessage(getString(R.string.invalid_user_text))
                 builder.create().show()
             }
         } else {
-            Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                save_or_update,
+                getString(R.string.fill_out_all_field_text),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun insertData() {
-        val mFirstName = first_name.text.toString()
-        val mLastName = last_name.text.toString()
-        val mEmail = email.text.toString()
-        val mLocation = location.text.toString()
-        val mPassword = password.text
+        val mFirstName = first_name.text.toString().trim()
+        val mLastName = last_name.text.toString().trim()
+        val mEmail = email.text.toString().trim()
+        val mLocation = location.text.toString().trim()
+        val mPassword = password.text.toString().trim()
 
         if (inputCheck(mFirstName, mLastName, mEmail, mLocation, mPassword)) {
 
@@ -169,23 +176,27 @@ class RegisterActivity : AppCompatActivity() {
                     mLastName,
                     mEmail,
                     mLocation,
-                    mPassword.toString()
+                    mPassword
                 )
             mKaffeineViewModel.insertUser(user)
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
-            Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                save_or_update,
+                getString(R.string.fill_out_all_field_text),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun updateData() {
-        val mFirstName = first_name.text.toString()
-        val mLastName = last_name.text.toString()
-        val mEmail = email.text.toString()
-        val mLocation = location.text.toString()
-        val mPassword = password.text
+        val mFirstName = first_name.text.toString().trim()
+        val mLastName = last_name.text.toString().trim()
+        val mEmail = email.text.toString().trim()
+        val mLocation = location.text.toString().trim()
+        val mPassword = password.text.toString().trim()
 
         if (inputCheck(mFirstName, mLastName, mEmail, mLocation, mPassword)) {
 
@@ -197,14 +208,18 @@ class RegisterActivity : AppCompatActivity() {
                     mLastName,
                     mEmail,
                     mLocation,
-                    mPassword.toString()
+                    mPassword
                 )
             mKaffeineViewModel.updateUser(user)
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         } else {
-            Snackbar.make(save_or_update, "Fill out all field!!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(
+                save_or_update,
+                getString(R.string.fill_out_all_field_text),
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 
@@ -232,7 +247,7 @@ class RegisterActivity : AppCompatActivity() {
         mLastName: String,
         mEmail: String,
         mLocation: String,
-        mPassword: Editable?
+        mPassword: String
     ): Boolean {
         return !(TextUtils.isEmpty(mFirstName)) &&
                 !(TextUtils.isEmpty(mLastName)) &&
@@ -241,7 +256,7 @@ class RegisterActivity : AppCompatActivity() {
                 !(TextUtils.isEmpty(mPassword))
     }
 
-    private fun secureInputCheck(sEmail: String, sPassword: Editable?): Boolean {
+    private fun secureInputCheck(sEmail: String, sPassword: String): Boolean {
         return !(TextUtils.isEmpty(sEmail)) &&
                 !(TextUtils.isEmpty(sPassword))
     }
