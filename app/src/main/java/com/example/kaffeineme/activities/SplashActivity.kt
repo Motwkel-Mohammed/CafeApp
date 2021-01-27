@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.kaffeineme.R
 import com.example.kaffeineme.data.classes.KaffeineViewModel
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_splash.*
 
 @Suppress("NAME_SHADOWING")
 class SplashActivity : AppCompatActivity() {
@@ -22,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             setUpIfRegisterOrMain()
-        }, 3000)
+        }, 2000)
     }
 
     private fun setUpIfRegisterOrMain() {

@@ -71,8 +71,8 @@
             android:id="@+id/horizontal_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
 
         <RelativeLayout
             android:id="@+id/layout"
@@ -107,10 +107,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/layout"
-            android:paddingStart="7dp"
-            android:paddingEnd="7dp" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

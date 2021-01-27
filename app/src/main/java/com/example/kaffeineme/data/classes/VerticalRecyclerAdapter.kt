@@ -49,7 +49,7 @@ class VerticalRecyclerAdapter(
 
         holder.coffeeName.text = current.coffeeName
         holder.coffeeDescription.text = current.coffeeDescription
-        holder.coffeePrice.text = "$${makeDouble(current.coffeePrice)}"
+        holder.coffeePrice.text = "$${"%.2f".format(current.coffeePrice)}"
         holder.coffeeImage.load(image(current.coffeeImage)) {
             crossfade(true)
             crossfade(1000)
@@ -71,13 +71,6 @@ class VerticalRecyclerAdapter(
         notifyDataSetChanged()
     }
 
-    private fun makeDouble(mCoffeePrice: Double?): String {
-        return when (val sCoffeePrice = mCoffeePrice!!.toDouble()) {
-            in 1..9 -> "%.2f".format(sCoffeePrice)
-            else -> sCoffeePrice.toString()
-        }
-    }
-
     private fun image(coffeeImage: Int): Int {
         return when (coffeeImage) {
             1 -> R.drawable.cafe_latte
@@ -97,7 +90,7 @@ class VerticalRecyclerAdapter(
 
         Snackbar.make(
             viewHolder.itemView,
-            "${currentItem.coffeeName} ${context.getString(R.string.delete_icon)}?",
+            "${context.getString(R.string.delete_icon)} ${currentItem.coffeeName}?",
             Snackbar.LENGTH_LONG
         ).setAction(context.getString(R.string.undo_text)) {
             remove = 1

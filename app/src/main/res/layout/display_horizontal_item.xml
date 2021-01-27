@@ -66,15 +66,14 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="57dp"
-        android:layout_height="25dp"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@id/card"
         android:layout_alignTop="@id/card"
         android:layout_marginStart="115dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginRight="3dp"
+        android:layout_marginTop="155dp"
         app:cardBackgroundColor="?attr/button_color"
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="10dp">
 
         <TextView
